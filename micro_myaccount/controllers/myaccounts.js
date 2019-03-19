@@ -19,8 +19,9 @@ module.exports = {
 	},
 
 	processModify: function(req, res) {
-		myaccountModel.update(req.body, req.params.id).then(function() {});
-		res.redirect('/');
+		// myaccountModel.update(req.body, req.params.id).then(function() {});
+		// res.redirect('/');
+		console.log(req.body);
 	},
 
 	processDelete: function(req, res) {
