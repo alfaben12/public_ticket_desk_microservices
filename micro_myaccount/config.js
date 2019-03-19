@@ -6,10 +6,10 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
-app.use(cors());
-
 /* import routes */
 const myaccountRouter = require('./routes/myaccountRouter');
+
+app.use(cors());
 
 app.use(
 	bodyParser.urlencoded({
@@ -29,7 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // routing
-app.use('/member/:id', myaccountRouter);
+app.get('/processGetMember/:id', myaccountRouter);
 app.post('/processAdd', myaccountRouter);
 app.put('/processModify/:id', myaccountRouter);
 app.delete('/processDelete/:id', myaccountRouter);

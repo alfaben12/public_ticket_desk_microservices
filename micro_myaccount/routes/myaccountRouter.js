@@ -14,9 +14,7 @@ const knex = require('knex')({
 const myaccountModel = require('../models/myaccount');
 const myaccountController = require('../controllers/myaccounts');
 
-router.get('/', myaccountController.index);
-
-router.get('/member/:id', myaccountController.memberDetail);
+router.get('/processGetMember/:id', myaccountController.processGetMember);
 
 router.post('/processAdd', myaccountController.processAdd);
 

@@ -7,16 +7,12 @@ module.exports = {
 		});
 	},
 
-	add: function(req, res) {
-		res.render('add');
-	},
-
 	processAdd: function(req, res) {
 		myaccountModel.insert(req.body).then(function() {});
 		res.redirect('/');
 	},
 
-	memberDetail: function(req, res) {
+	processGetMember: function(req, res) {
 		myaccountModel.getById(req.params.id).then(function(data) {
 			res.json(data);
 		});
