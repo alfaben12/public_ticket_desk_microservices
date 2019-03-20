@@ -1,25 +1,11 @@
-const express = require('express');
-const router = express.Router();
+const express = require("express")
+const router = express.Router()
+const Myaccounts = require("../controller/Myaccounts")
 
-const knex = require('knex')({
-	client: 'mysql',
-	connection: {
-		host: '127.0.0.1',
-		user: 'root',
-		password: '',
-		database: 'ticket_desk_db'
-	},
-	debug: true
-});
-const myaccountModel = require('../models/myaccount');
-const myaccountController = require('../controllers/myaccounts');
-
-router.get('/processGetMember/:id', myaccountController.processGetMember);
-
-router.post('/processAdd', myaccountController.processAdd);
-
-router.put('/processModify/:id', myaccountController.processModify);
-
-router.delete('/processDelete/:id', myaccountController.processDelete);
-
-module.exports = router;
+router.get("/", Myaccounts.index)
+router.get("/create", Myaccounts.create)
+router.post("/processCreate", Myaccounts.store)
+router.get("/edit/:id", Myaccounts.edit)
+router.put("/processModify/:id", Myaccounts.update)
+router.delete("/processDelete/:id", Myaccounts.destroy)
+module.exports = router
