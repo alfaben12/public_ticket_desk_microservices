@@ -19,9 +19,10 @@ module.exports = {
 	},
 
 	processModify: function(req, res) {
-		// myaccountModel.update(req.body, req.params.id).then(function() {});
+		myaccountModel.update(req.body, req.params.id).then(function(data) {
+			res.json(data);
+		});
 		// res.redirect('/');
-		console.log(req.body);
 	},
 
 	processDelete: function(req, res) {
