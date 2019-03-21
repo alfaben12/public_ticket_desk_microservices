@@ -64,7 +64,9 @@ module.exports = {
 					res.send('berhasil update')
 				})
 			}else{
-				res.send('insert');
+				Myaccount.create(value).then(function() {
+					res.send('berhasil insert')
+				})
 			}
 		});
 		// Myaccount.findByPk(req.params.id).then(function(row) {
