@@ -2,7 +2,7 @@ const Myaccount = require('../model/Myaccount');
 
 module.exports = {
 	index: function(req, res) {
-		res.send('root');
+		res.send(Myaccount.tes);
 	},
 
 	update: function(req, res) {
@@ -30,25 +30,29 @@ module.exports = {
 			birth: birth
 		};
 
-		let check = Myaccount.findAll({
-			where: {
-				member_id: req.params.id
-			}
-		}).then(function(rows) {
-			if (row.length == 1) {
-				Myaccount.findOne({
-					where: {
-						member_id: req.params.id
-					}
-				}).then(function(row) {
-					row.update(value);
-					res.send('berhasil update');
-				});
-			} else {
-				Myaccount.create(value).then(function() {
-					res.send('berhasil insert');
-				});
-			}
-		});
+		let check = Myaccount.MemberDetail
+			.findAll({
+				where: {
+					member_id: req.params.id
+				}
+			})
+			.then(function(rows) {
+				if (rows.length == 1) {
+					Myaccount.MemberDetail
+						.findOne({
+							where: {
+								member_id: req.params.id
+							}
+						})
+						.then(function(row) {
+							row.update(value);
+							res.send('berhasil update');
+						});
+				} else {
+					Myaccount.MemberDetail.create(value).then(function() {
+						res.send('berhasil insert');
+					});
+				}
+			});
 	}
 };
