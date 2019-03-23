@@ -1,4 +1,5 @@
 const Myaccount = require('../model/Myaccount');
+const MyaccountJWT = require('../JWTauth/MyaccountJWT');
 
 module.exports = {
 	index: function(req, res) {
@@ -6,6 +7,12 @@ module.exports = {
 	},
 
 	update: function(req, res) {
+		let JWTauth = MyaccountJWT.JWTverify(req, res);
+		if (!JWTauth) {
+			res.send('gagal auth jwt');
+			process.exit();
+		}
+
 		let member_id = req.body.member_auth;
 		let countries_id = req.body.txt_countries_id;
 		let states_id = req.body.txt_states_id;
@@ -16,7 +23,6 @@ module.exports = {
 		let phone = req.body.txt_phone;
 		let address = req.body.txt_address;
 		let birth = req.body.txt_birth;
-
 		let value = {
 			member_id: member_id,
 			countries_id: countries_id,
@@ -29,7 +35,6 @@ module.exports = {
 			address: address,
 			birth: birth
 		};
-
 		let check = Myaccount.MemberDetail
 			.findAll({
 				where: {
