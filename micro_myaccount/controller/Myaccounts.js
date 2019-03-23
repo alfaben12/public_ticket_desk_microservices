@@ -13,7 +13,7 @@ module.exports = {
 			process.exit();
 		}
 
-		let member_id = req.body.member_auth;
+		let member_id = req.JWTdata.member_auth;
 		let countries_id = req.body.txt_countries_id;
 		let states_id = req.body.txt_states_id;
 		let cities_id = req.body.txt_cities_id;
@@ -23,6 +23,7 @@ module.exports = {
 		let phone = req.body.txt_phone;
 		let address = req.body.txt_address;
 		let birth = req.body.txt_birth;
+
 		let value = {
 			member_id: member_id,
 			countries_id: countries_id,
@@ -38,7 +39,7 @@ module.exports = {
 		let check = Myaccount.MemberDetail
 			.findAll({
 				where: {
-					member_id: req.params.id
+					member_id: member_id
 				}
 			})
 			.then(function(rows) {
@@ -46,7 +47,7 @@ module.exports = {
 					Myaccount.MemberDetail
 						.findOne({
 							where: {
-								member_id: req.params.id
+								member_id: member_id
 							}
 						})
 						.then(function(row) {

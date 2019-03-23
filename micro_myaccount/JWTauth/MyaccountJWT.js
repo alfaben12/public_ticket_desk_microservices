@@ -11,6 +11,7 @@ module.exports = {
 				if (err) {
 					JWTres = false;
 				} else {
+					req.JWTdata = payload;
 					JWTres = true;
 				}
 			});
