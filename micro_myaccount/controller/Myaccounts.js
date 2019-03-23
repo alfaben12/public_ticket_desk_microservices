@@ -6,10 +6,13 @@ module.exports = {
 		res.send(Myaccount.tes);
 	},
 
-	update: function(req, res) {
+	processSetupMyaccount: function(req, res) {
 		let JWTauth = MyaccountJWT.JWTverify(req, res);
 		if (!JWTauth) {
-			res.send('gagal auth jwt');
+			res.json({
+				result: false,
+				message: 'Failed auth JWT.'
+			});
 			process.exit();
 		}
 
@@ -52,11 +55,104 @@ module.exports = {
 						})
 						.then(function(row) {
 							row.update(value);
-							res.send('berhasil update');
+							res.json({
+								result: true,
+								message: 'Success Update.'
+							});
 						});
 				} else {
 					Myaccount.MemberDetail.create(value).then(function() {
-						res.send('berhasil insert');
+						res.json({
+							result: true,
+							message: 'Success Insert.'
+						});
+					});
+				}
+			});
+	},
+
+	processSetupCC: function(req, res) {
+		let JWTauth = MyaccountJWT.JWTverify(req, res);
+		if (!JWTauth) {
+			res.json({
+				result: false,
+				message: 'Failed auth JWT.'
+			});
+			process.exit();
+		}
+
+		let member_id = req.JWTdata.member_auth;
+		let card_holder = req.body.txt_card_holder;
+		let card_number = req.body.txt_card_number;
+		let exp_month = req.body.txt_month;
+		let exp_year = req.body.txt_year;
+		let cvv = req.body.txt_cvv;
+		let scheme = req.body.txt_scheme;
+		let country = req.body.txt_country;
+		let bank = req.body.txt_bank;
+		let url = req.body.txt_url;
+		let bank_phone = req.body.txt_phone;
+
+		let value = {
+			member_id: member_id,
+			card_holder: card_holder,
+			card_number: card_number,
+			exp_month: exp_month,
+			exp_year: exp_year,
+			cvv: cvv,
+			scheme: scheme,
+			country: country,
+			bank: bank,
+			url: url,
+			bank_phone: bank_phone
+		};
+		Myaccount.PaymentCard.create(value).then(function(result) {
+			res.json({
+				result: true,
+				message: 'Success Retrive.'
+			});
+		});
+	},
+
+	processDeleteCC: function(req, res) {
+		let JWTauth = MyaccountJWT.JWTverify(req, res);
+		if (!JWTauth) {
+			res.json({
+				result: false,
+				message: 'Failed auth JWT.'
+			});
+			process.exit();
+		}
+		let id = req.JWTdata.id;
+		let member_id = req.JWTdata.member_auth;
+
+		let check = Myaccount.PaymentCard
+			.findAll({
+				where: {
+					id: id,
+					member_id: member_id
+				}
+			})
+			.then(function(rows) {
+				if (rows.length != 0) {
+					Myaccount.PaymentCard
+						.findOne({
+							where: {
+								id: id,
+								member_id: member_id
+							}
+						})
+						.then(function(row) {
+							row.destroy();
+							res.json({
+								result: true,
+								message: 'Success Delete.'
+							});
+						});
+				} else {
+					res.json({
+						result: false,
+						message: 'Failed Delete.'
 					});
 				}
 			});
