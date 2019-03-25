@@ -1,3 +1,5 @@
+const { check } = require('express-validator/check');
+
 const Myaccount = require('../model/Myaccount');
 const MyaccountJWT = require('../JWTauth/MyaccountJWT');
 
@@ -80,7 +82,17 @@ module.exports = {
 			});
 			process.exit();
 		}
+		var schema = {
+			email: {
+				in: 'query',
+				isEmail: {
+					errorMessage: 'Invalid Email'
+				}
+			}
+		};
 
+		// Validate headers/query params
+		check(schema);
 		let member_id = req.JWTdata.member_auth;
 		let card_holder = req.body.txt_card_holder;
 		let card_number = req.body.txt_card_number;
