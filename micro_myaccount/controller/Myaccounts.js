@@ -1,7 +1,6 @@
-const { check } = require('express-validator/check');
-
 const Myaccount = require('../model/Myaccount');
 const MyaccountJWT = require('../JWTauth/MyaccountJWT');
+const { check, validationResult } = require('express-validator/check');
 
 module.exports = {
 	index: function(req, res) {
@@ -9,16 +8,7 @@ module.exports = {
 	},
 
 	processSetupMyaccount: function(req, res) {
-		let JWTauth = MyaccountJWT.JWTverify(req, res);
-		if (!JWTauth) {
-			res.json({
-				result: false,
-				message: 'Failed auth JWT.'
-			});
-			process.exit();
-		}
-
-		let member_id = req.JWTdata.member_auth;
+		let member_id = req.payload.member_auth;
 		let countries_id = req.body.txt_countries_id;
 		let states_id = req.body.txt_states_id;
 		let cities_id = req.body.txt_cities_id;
@@ -41,6 +31,7 @@ module.exports = {
 			address: address,
 			birth: birth
 		};
+
 		let check = Myaccount.MemberDetail
 			.findAll({
 				where: {
@@ -74,26 +65,7 @@ module.exports = {
 	},
 
 	processSetupCC: function(req, res) {
-		let JWTauth = MyaccountJWT.JWTverify(req, res);
-		if (!JWTauth) {
-			res.json({
-				result: false,
-				message: 'Failed auth JWT.'
-			});
-			process.exit();
-		}
-		var schema = {
-			email: {
-				in: 'query',
-				isEmail: {
-					errorMessage: 'Invalid Email'
-				}
-			}
-		};
-
-		// Validate headers/query params
-		check(schema);
-		let member_id = req.JWTdata.member_auth;
+		let member_id = req.payload.member_auth;
 		let card_holder = req.body.txt_card_holder;
 		let card_number = req.body.txt_card_number;
 		let exp_month = req.body.txt_month;
@@ -127,16 +99,8 @@ module.exports = {
 	},
 
 	processDeleteCC: function(req, res) {
-		let JWTauth = MyaccountJWT.JWTverify(req, res);
-		if (!JWTauth) {
-			res.json({
-				result: false,
-				message: 'Failed auth JWT.'
-			});
-			process.exit();
-		}
-		let id = req.JWTdata.id;
-		let member_id = req.JWTdata.member_auth;
+		let id = req.payload.id;
+		let member_id = req.payload.member_auth;
 
 		let check = Myaccount.PaymentCard
 			.findAll({

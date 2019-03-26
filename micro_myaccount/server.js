@@ -4,6 +4,9 @@ var methodOverride = require('method-override');
 const path = require('path');
 const cors = require('cors');
 const con = require('./config/db.js');
+const expressValidator = require('express-validator');
+
+app.use(expressValidator());
 
 // allow request
 app.use(cors());
@@ -18,10 +21,6 @@ app.use(function(req, res, next) {
 		next();
 	}
 });
-
-// Using pug template engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 
 // connecting route to database
 app.use(function(req, res, next) {
