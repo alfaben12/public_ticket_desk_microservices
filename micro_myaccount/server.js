@@ -34,10 +34,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 // include router
-const biodataRouter = require('./routes/myaccountRouter');
+const myaccountRouter = require('./routes/MyaccountRouter');
 
 // routing
-app.use('/', biodataRouter);
+app.use('/', myaccountRouter);
 
 // starting server
 app.listen(3000, function() {

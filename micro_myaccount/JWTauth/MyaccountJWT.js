@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-function JWTverify(req, res, next) {
+exports.JWTverify = function(req, res, next) {
 	const token = req.body.jwtToken;
 	if (token) {
 		jwt.verify(token, 'TicketDesk', function(err, payload) {
@@ -20,6 +20,4 @@ function JWTverify(req, res, next) {
 			message: 'Invalid Signature.'
 		});
 	}
-}
-
-module.exports = JWTverify;
+};

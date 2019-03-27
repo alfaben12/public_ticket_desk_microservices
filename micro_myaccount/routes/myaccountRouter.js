@@ -7,10 +7,15 @@ const MyaccountValidator = require('../validator/MyaccountValidator');
 router.get('/', Myaccounts.index);
 router.put(
 	'/processSetupMyaccount/:id',
-	MyaccountJWT,
+	MyaccountJWT.JWTverify,
 	MyaccountValidator.processSetupMyaccountValidation,
 	Myaccounts.processSetupMyaccount
 );
-router.post('/processSetupCC/', MyaccountJWT, MyaccountValidator.processSetupCCValidation, Myaccounts.processSetupCC);
-router.delete('/processDeleteCC/', MyaccountJWT, Myaccounts.processDeleteCC);
+router.post(
+	'/processSetupCC/',
+	MyaccountJWT.JWTverify,
+	MyaccountValidator.processSetupCCValidation,
+	Myaccounts.processSetupCC
+);
+router.delete('/processDeleteCC/', MyaccountJWT.JWTverify, Myaccounts.processDeleteCC);
 module.exports = router;

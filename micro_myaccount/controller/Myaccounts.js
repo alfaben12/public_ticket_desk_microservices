@@ -1,5 +1,4 @@
 const Myaccount = require('../model/Myaccount');
-const MyaccountJWT = require('../JWTauth/MyaccountJWT');
 const { check, validationResult } = require('express-validator/check');
 
 module.exports = {
