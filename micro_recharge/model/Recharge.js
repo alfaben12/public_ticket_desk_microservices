@@ -1,42 +1,30 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/db');
 
-const MemberDetail = sequelize.define(
-	'member_detail',
+const Recharge = sequelize.define(
+	'recharge',
 	{
 		id: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
 		},
+		recharge_product_id: {
+			type: Sequelize.INTEGER
+		},
+		recharge_type_id: {
+			type: Sequelize.INTEGER
+		},
+		recharge_status_id: {
+			type: Sequelize.INTEGER
+		},
 		member_id: {
 			type: Sequelize.INTEGER
 		},
-		countries_id: {
-			type: Sequelize.INTEGER
-		},
-		states_id: {
-			type: Sequelize.INTEGER
-		},
-		cities_id: {
-			type: Sequelize.INTEGER
-		},
-		first_name: {
+		recharge_code: {
 			type: Sequelize.STRING(255)
 		},
-		last_name: {
-			type: Sequelize.STRING(255)
-		},
-		gender: {
-			type: Sequelize.INTEGER
-		},
-		phone: {
-			type: Sequelize.STRING(255)
-		},
-		address: {
-			type: Sequelize.TEXT
-		},
-		birth: {
+		target: {
 			type: Sequelize.STRING(255)
 		}
 	},
@@ -46,46 +34,34 @@ const MemberDetail = sequelize.define(
 	}
 );
 
-const PaymentCard = sequelize.define(
-	'payment_card',
+const RechargeDetail = sequelize.define(
+	'recharge_detail',
 	{
 		id: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
 		},
+		recharge_id: {
+			type: Sequelize.INTEGER
+		},
 		member_id: {
 			type: Sequelize.INTEGER
 		},
-		card_holder: {
-			type: Sequelize.STRING(255)
-		},
-		card_number: {
-			type: Sequelize.STRING(25)
-		},
-		exp_month: {
+		promo_code_id: {
 			type: Sequelize.INTEGER
 		},
-		exp_year: {
+		total_cost: {
 			type: Sequelize.INTEGER
 		},
-		cvv: {
+		total_reduction: {
 			type: Sequelize.INTEGER
 		},
-		scheme: {
-			type: Sequelize.STRING(255)
+		total_tax: {
+			type: Sequelize.INTEGER
 		},
-		country: {
-			type: Sequelize.STRING(255)
-		},
-		bank: {
-			type: Sequelize.STRING(255)
-		},
-		url: {
-			type: Sequelize.STRING(255)
-		},
-		bank_phone: {
-			type: Sequelize.STRING(255)
+		final_cost: {
+			type: Sequelize.INTEGER
 		}
 	},
 	{
@@ -95,6 +71,6 @@ const PaymentCard = sequelize.define(
 );
 
 module.exports = {
-	MemberDetail: MemberDetail,
-	PaymentCard: PaymentCard
+	Recharge: Recharge,
+	RechargeDetail: RechargeDetail
 };
