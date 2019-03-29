@@ -70,6 +70,142 @@ const RechargeDetail = sequelize.define(
 	}
 );
 
+const RechargePayment = sequelize.define(
+	'recharge_payment',
+	{
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		recharge_id: {
+			type: Sequelize.INTEGER
+		},
+		recharge_payment_status_id: {
+			type: Sequelize.INTEGER
+		},
+		payment_type_id: {
+			type: Sequelize.INTEGER
+		},
+		total_cost: {
+			type: Sequelize.STRING(255)
+		}
+	},
+	{
+		timestamps: false, // true = ketambahan 2 kolom create_at & update_at (AUTO) klo false tidak ketambahan
+		freezeTableName: true // true = nama table asli , false = nama table ketambahan 's' diakhir
+	}
+);
+
+const RechargePaymentStatus = sequelize.define(
+	'recharge_status',
+	{
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		name: {
+			type: Sequelize.STRING(255)
+		},
+		parameter: {
+			type: Sequelize.INTEGER
+		},
+		description: {
+			type: Sequelize.TEXT
+		}
+	},
+	{
+		timestamps: false, // true = ketambahan 2 kolom create_at & update_at (AUTO) klo false tidak ketambahan
+		freezeTableName: true // true = nama table asli , false = nama table ketambahan 's' diakhir
+	}
+);
+
+const RechargeProduct = sequelize.define(
+	'recharge_product',
+	{
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		supp_code: {
+			type: Sequelize.STRING(255),
+			primaryKey: true
+		},
+		supp_op: {
+			type: Sequelize.STRING(255)
+		},
+		supp_nominal: {
+			type: Sequelize.INTEGER
+		},
+		supp_price: {
+			type: Sequelize.INTEGER
+		},
+		supp_type: {
+			type: Sequelize.STRING(255)
+		},
+		supp_valid: {
+			type: Sequelize.INTEGER
+		},
+		supp_status: {
+			type: Sequelize.STRING(255)
+		}
+	},
+	{
+		timestamps: false, // true = ketambahan 2 kolom create_at & update_at (AUTO) klo false tidak ketambahan
+		freezeTableName: true // true = nama table asli , false = nama table ketambahan 's' diakhir
+	}
+);
+
+const RechargeStatus = sequelize.define(
+	'recharge_status',
+	{
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		name: {
+			type: Sequelize.STRING(255)
+		},
+		not_allowed_access: {
+			type: Sequelize.TEXT
+		},
+		redirect: {
+			type: Sequelize.TEXT
+		}
+	},
+	{
+		timestamps: false, // true = ketambahan 2 kolom create_at & update_at (AUTO) klo false tidak ketambahan
+		freezeTableName: true // true = nama table asli , false = nama table ketambahan 's' diakhir
+	}
+);
+
+const RechargeType = sequelize.define(
+	'recharge_type',
+	{
+		id: {
+			type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		name: {
+			type: Sequelize.STRING(255)
+		},
+		description: {
+			type: Sequelize.TEXT
+		},
+		parameter: {
+			type: Sequelize.INTEGER
+		}
+	},
+	{
+		timestamps: false, // true = ketambahan 2 kolom create_at & update_at (AUTO) klo false tidak ketambahan
+		freezeTableName: true // true = nama table asli , false = nama table ketambahan 's' diakhir
+	}
+);
+
 module.exports = {
 	Recharge: Recharge,
 	RechargeDetail: RechargeDetail
