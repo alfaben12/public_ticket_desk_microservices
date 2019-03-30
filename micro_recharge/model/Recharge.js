@@ -208,5 +208,10 @@ const RechargeType = sequelize.define(
 
 module.exports = {
 	Recharge: Recharge,
-	RechargeDetail: RechargeDetail
+	RechargeDetail: RechargeDetail,
+	RechargePayment: RechargePayment,
+	RechargePaymentStatus: RechargePaymentStatus,
+	RechargeProduct: RechargeProduct,
+	RechargeStatus: RechargeStatus,
+	RechargeType: RechargeType
 };
