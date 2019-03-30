@@ -64,3 +64,14 @@ exports.processGetServiceElectricityValidation = function(req, res, next) {
 		next();
 	}
 };
+
+exports.processRechargePulsaValidation = function(req, res, next) {
+	req.checkBody('phoneNumber', 'Phone Number is required').notEmpty();
+
+	let errors = req.validationErrors();
+	if (errors) {
+		res.json(errors);
+	} else {
+		next();
+	}
+};

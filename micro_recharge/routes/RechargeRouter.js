@@ -31,4 +31,6 @@ router.post(
 	Recharges.processGetServiceElectricity
 );
 
+router.post('/processRechargePulsa/', RechargeValidator.processRechargePulsaValidation, Recharges.processRechargePulsa);
+
 module.exports = router;

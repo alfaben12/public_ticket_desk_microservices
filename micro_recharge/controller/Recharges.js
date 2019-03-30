@@ -1,5 +1,6 @@
 const Recharge = require('../model/Recharge');
 const GlobalLibrary = require('../libraries/GlobalLibrary');
+const GlobalHelper = require('../helpers/GlobalHelper');
 
 module.exports = {
 	index: function(req, res) {
@@ -114,5 +115,32 @@ module.exports = {
 				});
 			}
 		});
+	},
+
+	processRechargePulsa: function(req, res) {
+		let productId = req;
+		let target = req.body.phoneNumber;
+		let memberId = req;
+		let rechargeTypeId = req;
+		let rechargeCode = req;
+
+		let data = GlobalHelper.generateRechargeCode();
+		console.log(data);
+	},
+
+	processRechargeVoucher: function(req, res) {
+		res.send(Recharge.tes);
+	},
+
+	processRechargeGame: function(req, res) {
+		res.send(Recharge.tes);
+	},
+
+	processRechargeElectricMoney: function(req, res) {
+		res.send(Recharge.tes);
+	},
+
+	processRechargeElectricity: function(req, res) {
+		res.send(Recharge.tes);
 	}
 };
