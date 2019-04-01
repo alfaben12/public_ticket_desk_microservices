@@ -123,9 +123,9 @@ module.exports = {
 		let memberId = req.payload.member_auth;
 		let rechargeTypeId = 1;
 
-		// let data = GlobalHelper.generateRechargeCode(function(todos) {
-		// 	console.log('todos', todos);
-		// });
+		let data = GlobalHelper.generateRechargeCode(function(code) {
+			console.log('code : ', code);
+		});
 	},
 
 	processRechargeVoucher: function(req, res) {
