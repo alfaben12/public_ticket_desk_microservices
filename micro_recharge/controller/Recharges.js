@@ -128,19 +128,11 @@ module.exports = {
 		});
 	},
 
-	processRechargeVoucher: function(req, res) {
-		res.send(Recharge.tes);
-	},
+	processRechargeVoucher: function(req, res) {},
 
-	processRechargeGame: function(req, res) {
-		res.send(Recharge.tes);
-	},
+	processRechargeGame: function(req, res) {},
 
-	processRechargeElectricMoney: function(req, res) {
-		res.send(Recharge.tes);
-	},
+	processRechargeElectricMoney: function(req, res) {},
 
-	processRechargeElectricity: function(req, res) {
-		res.send(Recharge.tes);
-	}
+	processRechargeElectricity: function(req, res) {}
 };
