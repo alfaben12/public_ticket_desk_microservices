@@ -118,14 +118,16 @@ module.exports = {
 	},
 
 	processRechargePulsa: function(req, res) {
+		let rechargeCode;
 		let productId = req;
 		let target = req.body.phoneNumber;
 		let memberId = req;
 		let rechargeTypeId = req;
-		let rechargeCode = req;
 
-		let data = GlobalHelper.generateRechargeCode();
-		console.log(data);
+		let data = GlobalHelper.generateRechargeCode(function(code) {
+			rechargeCode = code;
+			console.log(rechargeCode);
+		});
 	},
 
 	processRechargeVoucher: function(req, res) {
