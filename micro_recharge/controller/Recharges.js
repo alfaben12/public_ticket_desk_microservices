@@ -118,15 +118,14 @@ module.exports = {
 	},
 
 	processRechargePulsa: function(req, res) {
-		let productId = req;
+		let productId = req.payload.productId;
 		let target = req.body.phoneNumber;
-		let memberId = req;
-		let rechargeTypeId = req;
-		let rechargeCode = req;
+		let memberId = req.payload.member_auth;
+		let rechargeTypeId = 1;
 
-		let data = GlobalHelper.generateRechargeCode(function(todos) {
-			console.log('todos', todos);
-		});
+		// let data = GlobalHelper.generateRechargeCode(function(todos) {
+		// 	console.log('todos', todos);
+		// });
 	},
 
 	processRechargeVoucher: function(req, res) {
