@@ -9,6 +9,6 @@ exports.generateRechargeCode = function(callback) {
 			raw: true
 		})
 		.then(function(rows) {
-			callback(rows[0].id);
+			callback('REINV00' + rows[0].id);
 		});
 };
