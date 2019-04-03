@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 exports.JWTverify = function(req, res, next) {
 	const token = req.body.jwtToken;
 	if (token) {
-		jwt.verify(token, 'TicketDesk', function(err, payload) {
+		jwt.verify(token, 'randomstuff', function(err, payload) {
 			if (err) {
 				res.json({
 					result: false,
