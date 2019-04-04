@@ -1,4 +1,4 @@
-const Myaccount = require('../model/Myaccount');
+const Login = require('../model/Login');
 const GlobalHelper = require('../helpers/GlobalHelper');
 
 module.exports = {

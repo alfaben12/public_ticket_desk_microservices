@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-var methodOverride = require('method-override');
+const methodOverride = require('method-override');
 const path = require('path');
 const cors = require('cors');
 const con = require('./config/db.js');
@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 // include router
-const myaccountRouter = require('./routes/MyaccountRouter');
+const myaccountRouter = require('./routes/LoginRouter');
 
 // routing
 app.use('/', myaccountRouter);

@@ -1,4 +1,4 @@
-const Login = require('../model/Myaccount');
+const Login = require('../model/Login');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
