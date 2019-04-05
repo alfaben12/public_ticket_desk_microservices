@@ -117,15 +117,12 @@ module.exports = {
 		});
 	},
 
-	processRechargePulsa: function(req, res) {
-		let productId = req.payload.productId;
+	processRechargePulsa: async function(req, res) {
+		let productId = req.body.id;
 		let target = req.body.phoneNumber;
-		let memberId = req.payload.member_auth;
+		let memberId = req.payload.member_id;
 		let rechargeTypeId = 1;
-
-		let data = GlobalHelper.generateRechargeCode(function(code) {
-			console.log('code : ', code);
-		});
+		let data = await GlobalHelper.generateRechargeCode();
 	},
 
 	processRechargeVoucher: function(req, res) {},
