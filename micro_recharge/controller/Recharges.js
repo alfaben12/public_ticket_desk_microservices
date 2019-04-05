@@ -118,7 +118,7 @@ module.exports = {
 	},
 
 	processRechargePulsa: async function(req, res) {
-		let productId = req.body.id;
+		let productId = req.body.product_id;
 		let target = req.body.phoneNumber;
 		let memberId = req.payload.member_id;
 		let rechargeTypeId = 1;
