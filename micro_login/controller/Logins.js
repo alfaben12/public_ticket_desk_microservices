@@ -1,5 +1,7 @@
 const Login = require('../model/Login');
 const GlobalHelper = require('../helpers/GlobalHelper');
+const LoginJWT = require('../JWTauth/LoginJWT');
+const moment = require('moment');
 
 module.exports = {
 	index: function(req, res) {
@@ -9,16 +11,32 @@ module.exports = {
 	processLogin: async function(req, res) {
 		let member = await GlobalHelper.getMember(req, res);
 		let encrypt;
-		if (member.id > 0) {
+		let token;
+		if (member != null) {
 			encrypt = await GlobalHelper.encryptParameter(member.id);
+			token = await LoginJWT.JWTsign(encrypt);
+
+			res.status(201).json({
+				rc: 201,
+				result: true,
+				message: 'Server berhasil generate token.',
+				data: {
+					token: token,
+					information: {
+						account: member
+					},
+					generate_at: {
+						datetime: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
+						date: moment().format('YYYY-MM-DD')
+					}
+				}
+			});
 		} else {
-			res.status(204).json({
-				rc: 204,
-				message: 'Server berhasil memroses permintaan, tetapi tidak menampilkan konten apa pun.',
-				data: rows
+			res.status(400).json({
+				rc: 400,
+				result: false,
+				message: 'Server gagal generate token.'
 			});
 		}
-
-		console.log(encrypt);
 	}
 };
