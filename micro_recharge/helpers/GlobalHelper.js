@@ -25,3 +25,14 @@ exports.decryptParameter = function(req) {
 		reject('Error');
 	});
 };
+
+exports.encryptParameter = function(req) {
+	return new Promise((resolve, reject) => {
+		const hashids = new Hashids('TicketDesk', 8, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890');
+
+		let res = hashids.encode(req); // o2fXhV
+
+		resolve(res);
+		reject('Error');
+	});
+};
