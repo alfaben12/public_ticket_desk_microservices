@@ -120,9 +120,26 @@ module.exports = {
 	processRechargePulsa: async function(req, res) {
 		let productId = req.body.product_id;
 		let target = req.body.phoneNumber;
-		let memberId = req.payload.member_id;
+		let memberId = await GlobalHelper.decryptParameter(req.payload.member_id);
 		let rechargeTypeId = 1;
-		let data = await GlobalHelper.generateRechargeCode();
+		let rechargeCode = await GlobalHelper.generateRechargeCode();
+		let rechargeStatusId = 1;
+
+		let value = {
+			recharge_product_id: productId,
+			member_id: memberId,
+			recharge_type_id: rechargeTypeId,
+			recharge_code: rechargeCode,
+			target: target,
+			recharge_status_id: rechargeStatusId
+		};
+		Recharge.Recharge.create(value).then(function(result) {
+			res.status(201).json({
+				rc: 201,
+				result: true,
+				message: 'Success Retrive.'
+			});
+		});
 	},
 
 	processRechargeVoucher: function(req, res) {},

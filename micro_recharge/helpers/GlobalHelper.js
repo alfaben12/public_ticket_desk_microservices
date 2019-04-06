@@ -1,6 +1,7 @@
 const Recharge = require('../model/Recharge');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const Hashids = require('hashids');
 
 exports.generateRechargeCode = function(callback) {
 	return new Promise((resolve, reject) => {
@@ -11,5 +12,16 @@ exports.generateRechargeCode = function(callback) {
 			})
 			.then((rows) => resolve('REINV00' + rows[0].id))
 			.catch((err) => reject(err));
+	});
+};
+
+exports.decryptParameter = function(req) {
+	return new Promise((resolve, reject) => {
+		const hashids = new Hashids('TicketDesk', 8, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890');
+
+		let res = hashids.decode(req);
+
+		resolve(res[0]);
+		reject('Error');
 	});
 };
