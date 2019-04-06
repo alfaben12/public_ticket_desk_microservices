@@ -142,11 +142,103 @@ module.exports = {
 		});
 	},
 
-	processRechargeVoucher: function(req, res) {},
+	processRechargeVoucher: async function(req, res) {
+		let productId = req.body.product_id;
+		let target = req.body.phoneNumber;
+		let memberId = await GlobalHelper.decryptParameter(req.payload.member_id);
+		let rechargeTypeId = 2;
+		let rechargeCode = await GlobalHelper.generateRechargeCode();
+		let rechargeStatusId = 1;
 
-	processRechargeGame: function(req, res) {},
+		let value = {
+			recharge_product_id: productId,
+			member_id: memberId,
+			recharge_type_id: rechargeTypeId,
+			recharge_code: rechargeCode,
+			target: target,
+			recharge_status_id: rechargeStatusId
+		};
+		Recharge.Recharge.create(value).then(function(result) {
+			res.status(201).json({
+				rc: 201,
+				result: true,
+				message: 'Success Retrive.'
+			});
+		});
+	},
 
-	processRechargeElectricMoney: function(req, res) {},
+	processRechargeGame: async function(req, res) {
+		let productId = req.body.product_id;
+		let target = req.body.phoneNumber;
+		let memberId = await GlobalHelper.decryptParameter(req.payload.member_id);
+		let rechargeTypeId = 3;
+		let rechargeCode = await GlobalHelper.generateRechargeCode();
+		let rechargeStatusId = 1;
 
-	processRechargeElectricity: function(req, res) {}
+		let value = {
+			recharge_product_id: productId,
+			member_id: memberId,
+			recharge_type_id: rechargeTypeId,
+			recharge_code: rechargeCode,
+			target: target,
+			recharge_status_id: rechargeStatusId
+		};
+		Recharge.Recharge.create(value).then(function(result) {
+			res.status(201).json({
+				rc: 201,
+				result: true,
+				message: 'Success Retrive.'
+			});
+		});
+	},
+
+	processRechargeElectricMoney: async function(req, res) {
+		let productId = req.body.product_id;
+		let target = req.body.phoneNumber;
+		let memberId = await GlobalHelper.decryptParameter(req.payload.member_id);
+		let rechargeTypeId = 4;
+		let rechargeCode = await GlobalHelper.generateRechargeCode();
+		let rechargeStatusId = 1;
+
+		let value = {
+			recharge_product_id: productId,
+			member_id: memberId,
+			recharge_type_id: rechargeTypeId,
+			recharge_code: rechargeCode,
+			target: target,
+			recharge_status_id: rechargeStatusId
+		};
+		Recharge.Recharge.create(value).then(function(result) {
+			res.status(201).json({
+				rc: 201,
+				result: true,
+				message: 'Success Retrive.'
+			});
+		});
+	},
+
+	processRechargeElectricity: async function(req, res) {
+		let productId = req.body.product_id;
+		let target = req.body.phoneNumber;
+		let memberId = await GlobalHelper.decryptParameter(req.payload.member_id);
+		let rechargeTypeId = 5;
+		let rechargeCode = await GlobalHelper.generateRechargeCode();
+		let rechargeStatusId = 1;
+
+		let value = {
+			recharge_product_id: productId,
+			member_id: memberId,
+			recharge_type_id: rechargeTypeId,
+			recharge_code: rechargeCode,
+			target: target,
+			recharge_status_id: rechargeStatusId
+		};
+		Recharge.Recharge.create(value).then(function(result) {
+			res.status(201).json({
+				rc: 201,
+				result: true,
+				message: 'Success Retrive.'
+			});
+		});
+	}
 };

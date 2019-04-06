@@ -42,5 +42,29 @@ router.post(
 	RechargeValidator.processRechargePulsaValidation,
 	Recharges.processRechargePulsa
 );
+router.post(
+	'/processRechargeVoucher/',
+	RechargeJWT.JWTverify,
+	RechargeValidator.processRechargePulsaValidation,
+	Recharges.processRechargeVoucher
+);
+router.post(
+	'/processRechargeGame/',
+	RechargeJWT.JWTverify,
+	RechargeValidator.processRechargePulsaValidation,
+	Recharges.processRechargeGame
+);
+router.post(
+	'/processRechargeElectricMoney/',
+	RechargeJWT.JWTverify,
+	RechargeValidator.processRechargePulsaValidation,
+	Recharges.processRechargeElectricMoney
+);
+router.post(
+	'/processRechargeElectricity/',
+	RechargeJWT.JWTverify,
+	RechargeValidator.processRechargePulsaValidation,
+	Recharges.processRechargeElectricity
+);
 
 module.exports = router;
