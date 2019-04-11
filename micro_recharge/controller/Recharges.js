@@ -256,5 +256,15 @@ module.exports = {
 
 	processAddRechargeDetailElectricMoney: async function(req, res) {},
 
-	processAddRechargeDetailElectricity: async function(req, res) {}
+	processAddRechargeDetailElectricity: async function(req, res) {},
+
+	processGetFilterServicePulsa: async function(req, res) {},
+
+	processGetFilterServiceVoucher: async function(req, res) {},
+
+	processGetFilterServiceGame: async function(req, res) {},
+
+	processGetFilterServiceElectricMoney: async function(req, res) {},
+
+	processGetFilterServiceElectricity: async function(req, res) {}
 };
