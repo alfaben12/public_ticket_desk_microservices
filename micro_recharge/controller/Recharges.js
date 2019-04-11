@@ -246,5 +246,15 @@ module.exports = {
 				message: 'Success Retrive.'
 			});
 		});
-	}
+	},
+
+	processAddRechargeDetailPulsa: async function(req, res) {},
+
+	processAddRechargeDetailVoucher: async function(req, res) {},
+
+	processAddRechargeDetailGame: async function(req, res) {},
+
+	processAddRechargeDetailElectricMoney: async function(req, res) {},
+
+	processAddRechargeDetailElectricity: async function(req, res) {}
 };
