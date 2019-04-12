@@ -67,4 +67,6 @@ router.post(
 	Recharges.processRechargeElectricity
 );
 
+router.get('/processGetInfoOrder/', RechargeJWT.JWTverify, Recharges.processGetInfoOrder);
+
 module.exports = router;

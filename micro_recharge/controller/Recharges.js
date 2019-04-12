@@ -1,6 +1,7 @@
 const Recharge = require('../model/Recharge');
 const GlobalLibrary = require('../libraries/GlobalLibrary');
 const GlobalHelper = require('../helpers/GlobalHelper');
+const QueryHelper = require('../helpers/QueryHelper');
 
 module.exports = {
 	index: function(req, res) {
@@ -135,9 +136,8 @@ module.exports = {
 			recharge_status_id: rechargeStatusId
 		};
 		Recharge.Recharge.create(value).then(async function(result) {
-			orderId = result.id;
-			// orderId = await GlobalHelper.encryptParameter(result.id);
-			// productId = await GlobalHelper.encryptParameter(result.recharge_product_id);
+			orderId = await GlobalHelper.encryptParameter(result.id);
+			productId = await GlobalHelper.encryptParameter(result.recharge_product_id);
 
 			res.status(201).json({
 				rc: 201,
@@ -266,5 +266,11 @@ module.exports = {
 
 	processGetFilterServiceElectricMoney: async function(req, res) {},
 
-	processGetFilterServiceElectricity: async function(req, res) {}
+	processGetFilterServiceElectricity: async function(req, res) {},
+
+	processGetInfoOrder: async function(req, res) {
+		let order = await QueryHelper.getDataOrder(req.query);
+
+		console.log(order);
+	}
 };
