@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const Hashids = require('hashids');
 
-exports.generateRechargeCode = function(callback) {
+exports.generateRechargeCode = function() {
 	return new Promise((resolve, reject) => {
 		Recharge.Recharge
 			.findAll({
