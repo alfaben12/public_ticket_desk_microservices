@@ -68,5 +68,6 @@ router.post(
 );
 
 router.get('/processGetInfoOrder/', RechargeJWT.JWTverify, Recharges.processGetInfoOrder);
+router.get('/thank_you/', RechargeJWT.JWTverify, Recharges.thank_you);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/db');
+const Global = require('./Global');
 
 const Recharge = sequelize.define(
 	'recharge',
@@ -98,7 +99,7 @@ const RechargePayment = sequelize.define(
 );
 
 const RechargePaymentStatus = sequelize.define(
-	'recharge_status',
+	'recharge_payment_status',
 	{
 		id: {
 			type: Sequelize.INTEGER,
@@ -208,8 +209,8 @@ const RechargeType = sequelize.define(
 
 Recharge.belongsTo(RechargeProduct, { foreignKey: 'recharge_product_id' });
 Recharge.belongsTo(RechargeStatus, { foreignKey: 'recharge_status_id' });
-RechargeProduct.hasMany(Recharge, { foreignKey: 'id' });
-RechargeStatus.hasMany(Recharge, { foreignKey: 'id' });
+Recharge.hasOne(RechargePayment, { foreignKey: 'recharge_id' });
+RechargePayment.belongsTo(RechargePaymentStatus, { foreignKey: 'recharge_payment_status_id' });
 
 module.exports = {
 	Recharge: Recharge,

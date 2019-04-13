@@ -277,5 +277,16 @@ module.exports = {
 			message: 'Success Retrive.',
 			data: data
 		});
+	},
+
+	thank_you: async function(req, res) {
+		let order = await QueryHelper.getCompleteOrderData(req.query);
+		let data = [ order ];
+		res.status(200).json({
+			rc: 200,
+			result: true,
+			message: 'Success Retrive.',
+			data: data
+		});
 	}
 };
