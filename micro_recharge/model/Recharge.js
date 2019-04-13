@@ -206,6 +206,11 @@ const RechargeType = sequelize.define(
 	}
 );
 
+Recharge.belongsTo(RechargeProduct, { foreignKey: 'recharge_product_id' });
+Recharge.belongsTo(RechargeStatus, { foreignKey: 'recharge_status_id' });
+RechargeProduct.hasMany(Recharge, { foreignKey: 'id' });
+RechargeStatus.hasMany(Recharge, { foreignKey: 'id' });
+
 module.exports = {
 	Recharge: Recharge,
 	RechargeDetail: RechargeDetail,

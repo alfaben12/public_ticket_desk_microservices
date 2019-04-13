@@ -270,7 +270,12 @@ module.exports = {
 
 	processGetInfoOrder: async function(req, res) {
 		let order = await QueryHelper.getDataOrder(req.query);
-
-		console.log(order);
+		let data = [ order ];
+		res.status(200).json({
+			rc: 200,
+			result: true,
+			message: 'Success Retrive.',
+			data: data
+		});
 	}
 };
