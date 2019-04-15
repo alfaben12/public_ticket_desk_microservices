@@ -5,7 +5,9 @@ const path = require('path');
 const cors = require('cors');
 const con = require('./config/db.js');
 const expressValidator = require('express-validator');
+const dotenv = require('dotenv');
 
+dotenv.config();
 app.use(expressValidator());
 
 // allow request
@@ -40,6 +42,6 @@ const myaccountRouter = require('./routes/LoginRouter');
 app.use('/', myaccountRouter);
 
 // starting server
-app.listen(3001, function() {
-	console.log('server listening on port 3001');
+app.listen(process.env.RUN_PORT, function() {
+	console.log('server listening on port ' + process.env.RUN_PORT);
 });
