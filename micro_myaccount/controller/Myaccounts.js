@@ -1,13 +1,13 @@
 const Myaccount = require('../model/Myaccount');
-const { check, validationResult } = require('express-validator/check');
+const GlobalHelper = require('../helpers/GlobalHelper');
 
 module.exports = {
 	index: function(req, res) {
 		res.send(Myaccount.tes);
 	},
 
-	processSetupMyaccount: function(req, res) {
-		let member_id = req.payload.member_auth;
+	processSetupMyaccount: async function(req, res) {
+		let member_id = await GlobalHelper.decryptParameter(req.payload.member_id);
 		let countries_id = req.body.txt_countries_id;
 		let states_id = req.body.txt_states_id;
 		let cities_id = req.body.txt_cities_id;
@@ -63,8 +63,8 @@ module.exports = {
 			});
 	},
 
-	processSetupCC: function(req, res) {
-		let member_id = req.payload.member_auth;
+	processSetupCC: async function(req, res) {
+		let member_id = await GlobalHelper.decryptParameter(req.payload.member_id);
 		let card_holder = req.body.txt_card_holder;
 		let card_number = req.body.txt_card_number;
 		let exp_month = req.body.txt_month;
@@ -97,9 +97,9 @@ module.exports = {
 		});
 	},
 
-	processDeleteCC: function(req, res) {
+	processDeleteCC: async function(req, res) {
 		let id = req.payload.id;
-		let member_id = req.payload.member_auth;
+		let member_id = await GlobalHelper.decryptParameter(req.payload.member_id);
 
 		let check = Myaccount.PaymentCard
 			.findAll({
