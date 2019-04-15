@@ -40,6 +40,6 @@ const rechargeRouter = require('./routes/RechargeRouter');
 app.use('/', rechargeRouter);
 
 // starting server
-app.listen(3000, function() {
-	console.log('server listening on port 3000');
+app.listen(3003, function() {
+	console.log('server listening on port 3003');
 });

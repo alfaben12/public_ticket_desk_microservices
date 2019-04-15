@@ -40,6 +40,6 @@ const myaccountRouter = require('./routes/MyaccountRouter');
 app.use('/', myaccountRouter);
 
 // starting server
-app.listen(3000, function() {
-	console.log('server listening on port 3000');
+app.listen(3002, function() {
+	console.log('server listening on port 3002');
 });
