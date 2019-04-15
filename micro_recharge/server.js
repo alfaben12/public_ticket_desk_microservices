@@ -6,8 +6,8 @@ const cors = require('cors');
 const con = require('./config/db.js');
 const expressValidator = require('express-validator');
 const dotenv = require('dotenv');
-dotenv.config();
 
+dotenv.config();
 app.use(expressValidator());
 
 // allow request
