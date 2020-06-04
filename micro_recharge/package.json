@@ -16,6 +16,7 @@
 		"express-validator": "^5.3.1",
 		"hashids": "^1.2.2",
 		"jsonwebtoken": "^8.5.1",
+		"md5": "^2.2.1",
 		"method-override": "^3.0.0",
 		"moment": "^2.24.0",
 		"mysql": "^2.15.0",

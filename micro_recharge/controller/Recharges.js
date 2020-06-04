@@ -136,9 +136,10 @@ module.exports = {
 			recharge_status_id: rechargeStatusId
 		};
 		Recharge.Recharge.create(value).then(async function(result) {
-			orderId = await GlobalHelper.encryptParameter(result.id);
-			productId = await GlobalHelper.encryptParameter(result.recharge_product_id);
-
+			// orderId = await GlobalHelper.encryptParameter(result.id);
+			// productId = await GlobalHelper.encryptParameter(result.recharge_product_id);
+			orderId = result.id;
+			productId = result.recharge_product_id;
 			res.status(201).json({
 				rc: 201,
 				result: true,
@@ -164,11 +165,16 @@ module.exports = {
 			target: target,
 			recharge_status_id: rechargeStatusId
 		};
-		Recharge.Recharge.create(value).then(function(result) {
+		Recharge.Recharge.create(value).then(async function(result) {
+			// orderId = await GlobalHelper.encryptParameter(result.id);
+			// productId = await GlobalHelper.encryptParameter(result.recharge_product_id);
+			orderId = result.id;
+			productId = result.recharge_product_id;
 			res.status(201).json({
 				rc: 201,
 				result: true,
-				message: 'Success Retrive.'
+				message: 'Success Retrive.',
+				redirect: 'recharges/confirm?orid=' + orderId + '&prid=' + productId + '&pnum=' + target
 			});
 		});
 	},
@@ -189,11 +195,16 @@ module.exports = {
 			target: target,
 			recharge_status_id: rechargeStatusId
 		};
-		Recharge.Recharge.create(value).then(function(result) {
+		Recharge.Recharge.create(value).then(async function(result) {
+			// orderId = await GlobalHelper.encryptParameter(result.id);
+			// productId = await GlobalHelper.encryptParameter(result.recharge_product_id);
+			orderId = result.id;
+			productId = result.recharge_product_id;
 			res.status(201).json({
 				rc: 201,
 				result: true,
-				message: 'Success Retrive.'
+				message: 'Success Retrive.',
+				redirect: 'recharges/confirm?orid=' + orderId + '&prid=' + productId + '&pnum=' + target
 			});
 		});
 	},
@@ -214,11 +225,16 @@ module.exports = {
 			target: target,
 			recharge_status_id: rechargeStatusId
 		};
-		Recharge.Recharge.create(value).then(function(result) {
+		Recharge.Recharge.create(value).then(async function(result) {
+			// orderId = await GlobalHelper.encryptParameter(result.id);
+			// productId = await GlobalHelper.encryptParameter(result.recharge_product_id);
+			orderId = result.id;
+			productId = result.recharge_product_id;
 			res.status(201).json({
 				rc: 201,
 				result: true,
-				message: 'Success Retrive.'
+				message: 'Success Retrive.',
+				redirect: 'recharges/confirm?orid=' + orderId + '&prid=' + productId + '&pnum=' + target
 			});
 		});
 	},
@@ -239,11 +255,16 @@ module.exports = {
 			target: target,
 			recharge_status_id: rechargeStatusId
 		};
-		Recharge.Recharge.create(value).then(function(result) {
+		Recharge.Recharge.create(value).then(async function(result) {
+			// orderId = await GlobalHelper.encryptParameter(result.id);
+			// productId = await GlobalHelper.encryptParameter(result.recharge_product_id);
+			orderId = result.id;
+			productId = result.recharge_product_id;
 			res.status(201).json({
 				rc: 201,
 				result: true,
-				message: 'Success Retrive.'
+				message: 'Success Retrive.',
+				redirect: 'recharges/confirm?orid=' + orderId + '&prid=' + productId + '&pnum=' + target
 			});
 		});
 	},

@@ -10,7 +10,7 @@ exports.generateRechargeCode = function() {
 				attributes: [ [ Sequelize.fn('max', Sequelize.col('id')), 'id' ] ],
 				raw: true
 			})
-			.then((rows) => resolve('REINV00' + rows[0].id))
+			.then((rows) => resolve(Math.random().toString(36).slice(-7).toUpperCase() + parseInt(rows[0].id + 1)))
 			.catch((err) => reject(err));
 	});
 };
